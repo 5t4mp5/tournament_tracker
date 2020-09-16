@@ -20,17 +20,17 @@ dbConn.then((conn) => {
   (id uuid PRIMARY KEY DEFAULT uuid_generate_v4(), 
   title VARCHAR (255) NOT NULL, 
   format format NOT NULL, 
-  avatar VARCHAR (255), 
+  avatar TEXT, 
   status status NOT NULL);
   CREATE TABLE IF NOT EXISTS competitors(
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR (255),
-    avatar VARCHAR (255)
+    avatar TEXT
   );
   CREATE TABLE IF NOT EXISTS users (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     userame VARCHAR (255),
-    avatar VARCHAR (255),
+    avatar TEXT,
     email VARCHAR (255),
     password VARCHAR (255)
   );
