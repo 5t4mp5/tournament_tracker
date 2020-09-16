@@ -29,6 +29,7 @@
   "scripts": {
     "start": "node server.js",
     "postinstall": "npm run webpack & tsc server.ts",
+    "seed": "tsc ./backend/src/db/index.ts && node ./backend/src/db/index.js",
     "webpack": "webpack",
     "webpack:dev": "npm run webpack -- --mode=development --watch",
     "start:dev": "npm run webpack:dev & tsc ./backend/src/server.ts --outDir ./backend/dist &&  nodemon ./backend/dist/server.js --ignore src/ --ignore dist/"
