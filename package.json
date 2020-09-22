@@ -10,8 +10,10 @@
     "pg": "^8.3.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
@@ -24,6 +26,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "nodemon": "^2.0.4",
     "source-map-loader": "^1.1.0",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.63",
     "typescript": "^4.0.2"
   },
   "scripts": {
@@ -32,7 +36,8 @@
     "seed": "tsc ./backend/src/db/*.ts --outDir ./backend/dist/db && node ./backend/dist/db/seed.js",
     "webpack": "webpack",
     "webpack:dev": "npm run webpack -- --mode=development --watch",
-    "start:dev": "npm run webpack & tsc &&  nodemon ./backend/dist/server.js --ignore src/ --ignore dist/"
+    "start:server": "tsc && node ./backend/dist/server.js",
+    "start:dev": "npm run webpack:dev & ts-node-dev ./backend/src/server.ts --watch ./backend/src"
   },
   "keywords": [],
   "author": "",
