@@ -1,11 +1,13 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { User } from "../store/user";
 
 interface PropsUserBadge {
-  image: string;
-  name: string;
+  image?: string;
+  name?: string;
 }
 
-export const UserBadge = (props: PropsUserBadge) => {
+const _UserBadge = (props: PropsUserBadge) => {
   const { image, name } = props;
   return (
     <div
@@ -26,3 +28,10 @@ export const UserBadge = (props: PropsUserBadge) => {
     </div>
   );
 };
+
+const mapStateToProps = (state: User) => ({
+  image: state?.avatar || "",
+  name: state?.username || "",
+});
+
+export const UserBadge = connect(mapStateToProps)(_UserBadge);

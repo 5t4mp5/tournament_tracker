@@ -29,7 +29,7 @@ dbConn.then((conn) => {
   );
   CREATE TABLE IF NOT EXISTS users (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-    userame VARCHAR (255),
+    username VARCHAR (255),
     avatar TEXT,
     email VARCHAR (255),
     password VARCHAR (255)
