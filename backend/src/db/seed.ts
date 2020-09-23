@@ -52,6 +52,27 @@ dbConn.then((conn) => {
     competitor2_id uuid REFERENCES competitors (id),
     result VARCHAR (255)
   );
+  INSERT INTO competitors (name) VALUES
+    ('Taichi'),
+    ('Will Ospreay'),
+    ('Jay White'),
+    ('Kota Ibushi'),
+    ('Minoru Suzuki'),
+    ('Kazuchika Okada'),
+    ('Jeff Cobb'),
+    ('Tomohiro Ishii'),
+    ('Shingo Takagi'),
+    ('Yujiro Takahashi'),
+    ('Juice Robinson'),
+    ('Toru Yano'),
+    ('Tetsuya Naito'),
+    ('Zack Sabre Jr.'),
+    ('KENTA'),
+    ('Hirooki Goto'),
+    ('SENADA'),
+    ('Hiroshi Tanahashi'),
+    ('YOSHI-HASHI'),
+    ('EVIL');
   END;
   $do$;`
     )

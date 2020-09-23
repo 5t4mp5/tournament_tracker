@@ -23,15 +23,19 @@ interface UserAction {
 }
 
 export const getUser = (id: string) => {
-  return axios
-    .get(`/api/user/${id}`)
-    .then((res) => {
-      return userStore.dispatch({
-        type: "SET_USER",
-        user: res.data,
-      });
-    })
-    .then(() => console.log("STATE", userStore.getState()));
+  return (
+    userStore.getState() ||
+    axios
+      .get(`/api/user/${id}`)
+      .then((res) => {
+        console.log("QUERY RAN");
+        return userStore.dispatch({
+          type: "SET_USER",
+          user: res.data,
+        });
+      })
+      .then(() => console.log("STATE", userStore.getState()))
+  );
 };
 
 export const userStore = createStore(user);
