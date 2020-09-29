@@ -1,12 +1,12 @@
 import axios from "axios";
 import { createStore } from "redux";
 
-const user = (state: User, action: UserAction) => {
+export const userStore = (state: User, action: UserAction) => {
   switch (action.type) {
     case "SET_USER":
       return action.user;
     default:
-      return state;
+      return state || null;
   }
 };
 
@@ -17,25 +17,26 @@ export interface User {
   email: string;
 }
 
-interface UserAction {
+export interface UserAction {
   type: "SET_USER";
   user: User;
 }
 
-export const getUser = (id: string) => {
-  return (
-    userStore.getState() ||
-    axios
-      .get(`/api/user/${id}`)
-      .then((res) => {
-        console.log("QUERY RAN");
-        return userStore.dispatch({
-          type: "SET_USER",
-          user: res.data,
-        });
-      })
-      .then(() => console.log("STATE", userStore.getState()))
-  );
+const setUser = (data: User) => {
+  return {
+    type: "SET_USER",
+    user: data,
+  };
 };
 
-export const userStore = createStore(user);
+export const fetchUser = (id: string) => {
+  return (dispatch: any) => {
+    return axios
+      .get(`api/user/${id}`)
+      .then((res) => res.data)
+      .then((user) => {
+        console.log("USER", user);
+        return dispatch(setUser(user));
+      });
+  };
+};
