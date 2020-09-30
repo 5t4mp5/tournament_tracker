@@ -29,7 +29,6 @@ const generateQuery = async (entrants: entrant[], tournamentName: string) => {
         `;
   }
   const finalQuery = baseQuery + entrantsQuery + ";";
-  console.log(finalQuery);
   return finalQuery;
 };
 
