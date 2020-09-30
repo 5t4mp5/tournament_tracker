@@ -12,7 +12,7 @@ const entrants: entrant[] = competitors.map((competitor, idx) => ({
 }));
 
 const generateQuery = async (entrants: entrant[], tournamentName: string) => {
-  const conn = await dbConn;
+  const conn = await dbConn();
   const tournamentId = (
     await conn.query(
       `SELECT id FROM tournaments WHERE title = '${tournamentName}'`
@@ -33,7 +33,7 @@ const generateQuery = async (entrants: entrant[], tournamentName: string) => {
   return finalQuery;
 };
 
-dbConn
+dbConn()
   .then(async (conn) => {
     return conn.query(await generateQuery(entrants, "G1 Climax 30"));
   })

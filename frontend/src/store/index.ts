@@ -2,8 +2,12 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 //reducers
-import { userStore } from "./user";
+import { userStore, User } from "./user";
 
-const reducer = combineReducers({ userStore });
+export interface State {
+  user: User;
+}
+
+const reducer = combineReducers({ user: userStore });
 
 export const store = createStore(reducer, applyMiddleware(thunk));

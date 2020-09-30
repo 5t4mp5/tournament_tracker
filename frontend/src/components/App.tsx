@@ -1,5 +1,7 @@
-import { UserBadge } from "./user-badge";
 import * as React from "react";
+
+//Components
+import { UserBadge } from "./user-badge";
 
 export function App() {
   return (

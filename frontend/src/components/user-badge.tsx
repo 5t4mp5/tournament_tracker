@@ -1,24 +1,24 @@
 import * as React from "react";
+const { useEffect } = React;
 import { connect } from "react-redux";
 import { User, fetchUser } from "../store/user";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
+import { State } from "../store";
 
 interface PropsUserBadge {
-  image?: string;
-  name?: string;
+  avatar?: string;
+  username?: string;
   fetchUser: (id: string) => Promise<void>;
 }
 
 const _UserBadge = (props: PropsUserBadge) => {
-  const { image, name, fetchUser } = props;
+  const { avatar, username, fetchUser } = props;
   React.useEffect(() => {
     fetchUser("95f73b8e-b1b9-4b7b-8561-9b1ce1d610ae").catch((e) =>
       console.error(e)
     );
   });
-  console.log("IMAGE", image);
-  console.log("NAME", name);
   return (
     <div
       style={{
@@ -31,17 +31,17 @@ const _UserBadge = (props: PropsUserBadge) => {
       }}
     >
       <img
-        src={image}
-        style={{ height: "100%", width: "100%", borderRadius: "50%" }}
+        src={avatar}
+        style={{ height: "80%", width: "80%", borderRadius: "50%" }}
       />
-      <span>{name}</span>
+      <span>{username}</span>
     </div>
   );
 };
 
-const mapStateToProps = (state: User) => ({
-  image: state.avatar,
-  name: state.username,
+const mapStateToProps = (state: State) => ({
+  avatar: state.user.avatar,
+  username: state.user.username,
 });
 
 const mapDispatchToProps = (

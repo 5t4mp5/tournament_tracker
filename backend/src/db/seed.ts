@@ -1,6 +1,6 @@
 import { dbConn } from "./index";
 
-dbConn.then((conn) => {
+dbConn().then((conn) => {
   conn
     .query(
       `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
