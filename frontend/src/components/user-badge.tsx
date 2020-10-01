@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 const { useEffect } = React;
-import { connect } from "react-redux";
-import { User, fetchUser } from "../store/user";
-import { ThunkDispatch } from "redux-thunk";
-import { Action } from "redux";
-import { State } from "../store";
+import { connect } from 'react-redux';
+import { User, fetchUser } from '../store/user';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+import { State } from '../store';
 
 interface PropsUserBadge {
   avatar?: string;
@@ -14,25 +14,25 @@ interface PropsUserBadge {
 
 const _UserBadge = (props: PropsUserBadge) => {
   const { avatar, username, fetchUser } = props;
-  React.useEffect(() => {
-    fetchUser("95f73b8e-b1b9-4b7b-8561-9b1ce1d610ae").catch((e) =>
+  useEffect(() => {
+    fetchUser('91805cb9-b667-4f2d-923c-72df61ef45f8').catch((e) =>
       console.error(e)
     );
   });
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "120px",
-        height: "120px",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '120px',
+        height: '120px',
       }}
     >
       <img
         src={avatar}
-        style={{ height: "80%", width: "80%", borderRadius: "50%" }}
+        style={{ height: '80%', width: '80%', borderRadius: '50%' }}
       />
       <span>{username}</span>
     </div>

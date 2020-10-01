@@ -1,14 +1,14 @@
-import { competitors } from "./competitors";
-import { dbConn } from "./index";
+import { competitors } from './competitors';
+import { dbConn } from './index';
 
 interface entrant {
   name: string;
-  block: "a" | "b";
+  block: 'a' | 'b';
 }
 
 const entrants: entrant[] = competitors.map((competitor, idx) => ({
   name: competitor,
-  block: idx < 10 ? "a" : "b",
+  block: idx < 10 ? 'a' : 'b',
 }));
 
 const generateQuery = async (entrants: entrant[], tournamentName: string) => {
@@ -24,16 +24,20 @@ const generateQuery = async (entrants: entrant[], tournamentName: string) => {
     entrantsQuery += `((SELECT id FROM competitors WHERE name = '${
       entrants[i].name
     }'), '${tournamentId}', '${entrants[i].block}')${
-      i < entrants.length - 1 ? "," : ""
+      i < entrants.length - 1 ? ',' : ''
     }
         `;
   }
-  const finalQuery = baseQuery + entrantsQuery + ";";
+  const finalQuery = baseQuery + entrantsQuery + ';';
   return finalQuery;
 };
 
 dbConn()
   .then(async (conn) => {
-    return conn.query(await generateQuery(entrants, "G1 Climax 30"));
+    return conn.query(await generateQuery(entrants, 'G1 Climax 30'));
+  })
+  .then(() => {
+    console.log('ENTRANTS SEEDED');
+    process.exit(0);
   })
   .catch((e) => console.error(e));

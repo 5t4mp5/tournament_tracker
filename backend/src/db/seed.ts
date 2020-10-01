@@ -1,4 +1,4 @@
-import { dbConn } from "./index";
+import { dbConn } from './index';
 
 dbConn().then((conn) => {
   conn
@@ -16,11 +16,11 @@ dbConn().then((conn) => {
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'block') THEN
       CREATE TYPE block as ENUM ('a', 'b');
     END IF;
-  CREATE TABLE IF NOT EXISTS tournaments 
-  (id uuid PRIMARY KEY DEFAULT uuid_generate_v4(), 
-  title VARCHAR (255) NOT NULL, 
-  format format NOT NULL, 
-  avatar TEXT, 
+  CREATE TABLE IF NOT EXISTS tournaments
+  (id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title VARCHAR (255) NOT NULL,
+  format format NOT NULL,
+  avatar TEXT,
   status status NOT NULL);
   CREATE TABLE IF NOT EXISTS competitors(
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -37,7 +37,7 @@ dbConn().then((conn) => {
   CREATE TABLE IF NOT EXISTS pickers (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id uuid REFERENCES users (id),
-    tournament_id uuid REFERENCES tournaments (id) 
+    tournament_id uuid REFERENCES tournaments (id)
   );
   CREATE TABLE IF NOT EXISTS entrants (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -76,6 +76,9 @@ dbConn().then((conn) => {
   END;
   $do$;`
     )
-    .then(() => console.log("DB SEEDED!!!"))
+    .then(() => {
+      console.log('DB SEEDED!!!');
+      process.exit(0);
+    })
     .catch((e) => console.error(e));
 });

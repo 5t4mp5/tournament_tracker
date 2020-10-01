@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const userStore = (
   state: User = defaultUserState,
   action: UserAction
 ) => {
   switch (action.type) {
-    case "SET_USER":
+    case 'SET_USER':
       return action.user;
     default:
       return state;
@@ -14,7 +14,7 @@ export const userStore = (
 
 const setUser = (data: User) => {
   return {
-    type: "SET_USER",
+    type: 'SET_USER',
     user: data,
   };
 };
@@ -38,13 +38,13 @@ export interface User {
 }
 
 export interface UserAction {
-  type: "SET_USER";
+  type: 'SET_USER';
   user: User;
 }
 
 const defaultUserState = {
-  id: "",
-  username: "",
-  avatar: "",
-  email: "",
+  id: '',
+  username: '',
+  avatar: '',
+  email: '',
 };
