@@ -24,13 +24,13 @@ app.get('/api/user/:id', async (req, res) => {
 });
 
 app.get('/api/tournament/:id', async (req, res) => {
-  const user = await getTournament(req.params.id);
-  res.json(user.rows[0]);
+  const tournament = await getTournament(req.params.id);
+  res.json(tournament);
 });
 
-app.get('/api/tournament/entrants/:id', async (req, res) => {
-  const user = await getEntrants(req.params.id);
-  res.json(user.rows);
-});
+// app.get('/api/tournament/entrants/:id', async (req, res) => {
+//   const user = await getEntrants(req.params.id);
+//   res.json(user.rows);
+// });
 
 app.listen(port, () => console.log(`listening on port ${port}`));

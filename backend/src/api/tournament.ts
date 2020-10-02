@@ -1,15 +1,15 @@
-import { dbConn } from '../db';
+import { dbPool } from '../db';
 
 export const getTournament = async (id: string) => {
-  const client = await dbConn();
+  const client = await dbPool.connect();
   const tournamentQuery = `SELECT * FROM tournaments WHERE id = '${id}';`;
-  return await client.query(tournamentQuery).catch((e) => {
-    throw e;
-  });
+  const tournament = (await client.query(tournamentQuery)).rows[0];
+  const entrants = (await getEntrants(tournament.id)).rows;
+  return { ...tournament, entrants };
 };
 
 export const getEntrants = async (tournamentId: string) => {
-  const client = await dbConn();
+  const client = await dbPool.connect();
   const entrantQuery = `
   SELECT * FROM entrants
   JOIN competitors ON (entrants.competitor_id = competitors.id)

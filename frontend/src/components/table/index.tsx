@@ -1,31 +1,23 @@
 import * as React from 'react';
 import { useTable } from 'react-table';
+import { connect } from 'react-redux';
+import { fetchTournament, Tournament } from '../../store/tournament';
+import { State } from '../../store';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 
-import { store } from '../../store';
-import { fetchTournament, fetchEntrants } from '../../store/tournament';
+const _Table = (props: TableProps) => {
+  const { tournament, fetchTournament } = props;
+  React.useEffect(() => {
+    fetchTournament('3a6202c0-78c4-4f2f-8f29-bb68a311fa65');
+  });
 
-const testEntrants = async () => {
-  await fetchTournament('3a6202c0-78c4-4f2f-8f29-bb68a311fa65');
-};
-
-export const Table = () => {
-  const data = React.useMemo(
-    () => [
-      {
-        col1: 'Hello',
-        col2: 'World',
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-      },
-    ],
-    []
-  );
+  const data = tournament.entrants
+    ? tournament.entrants.map((entrant) => ({
+        name: entrant.name,
+        block: entrant.block,
+      }))
+    : [];
 
   const columns = React.useMemo(
     () => [
@@ -107,3 +99,21 @@ export const Table = () => {
     </table>
   );
 };
+
+const mapStateToProps = (state: State) => ({
+  tournament: state.tournament,
+});
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<Tournament, undefined, Action>
+) => ({
+  fetchTournament: (tournamentId: string) =>
+    dispatch(fetchTournament(tournamentId)),
+});
+
+export const Table = connect(mapStateToProps, mapDispatchToProps)(_Table);
+
+interface TableProps {
+  tournament: Tournament;
+  fetchTournament: (tournamentId: string) => Promise<void>;
+}

@@ -30,16 +30,16 @@ export const fetchTournament = (id: string) => {
   };
 };
 
-export const fetchEntrants = (tournament: Tournament) => {
-  return (dispatch: any) => {
-    return axios
-      .get(`api/tournament/entrants/${tournament.id}`)
-      .then((res) => res.data)
-      .then((entrants) => {
-        return dispatch(setTournament({ ...tournament, entrants }));
-      });
-  };
-};
+// export const fetchEntrants = (tournament: Tournament) => {
+//   return (dispatch: any) => {
+//     return axios
+//       .get(`api/tournament/entrants/${tournament.id}`)
+//       .then((res) => res.data)
+//       .then((entrants) => {
+//         return dispatch(setTournament({ ...tournament, entrants }));
+//       });
+//   };
+// };
 
 const defaultTournamentState: Tournament = {
   id: '',

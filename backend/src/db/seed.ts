@@ -1,6 +1,6 @@
-import { dbConn } from './index';
+import { dbPool } from './index';
 
-dbConn().then((conn) => {
+dbPool.connect().then((conn) => {
   conn
     .query(
       `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
