@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { useTable } from 'react-table';
 import { connect } from 'react-redux';
-import { fetchTournament, Tournament } from '../../store/tournament';
-import { State } from '../../store';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
+
+//utils
+import { fetchTournament, Tournament } from '../../store/tournament';
+import { State } from '../../store';
 
 const _Table = (props: TableProps) => {
   const { tournament, fetchTournament } = props;

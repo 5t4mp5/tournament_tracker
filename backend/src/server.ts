@@ -1,8 +1,10 @@
 import * as express from 'express';
 const app = express();
 import * as path from 'path';
+
+//utils
 import { getUser } from './api/user';
-import { getTournament, getEntrants } from './api/tournament';
+import { getTournament } from './api/tournament';
 
 const port: number | string = process.env.PORT || 3000;
 
@@ -27,10 +29,5 @@ app.get('/api/tournament/:id', async (req, res) => {
   const tournament = await getTournament(req.params.id);
   res.json(tournament);
 });
-
-// app.get('/api/tournament/entrants/:id', async (req, res) => {
-//   const user = await getEntrants(req.params.id);
-//   res.json(user.rows);
-// });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
