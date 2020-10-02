@@ -5,7 +5,9 @@ export const getTournament = async (id: string) => {
   const tournamentQuery = `SELECT * FROM tournaments WHERE id = '${id}';`;
   const tournament = (await client.query(tournamentQuery)).rows[0];
   const entrants = (await getEntrants(tournament.id)).rows;
-  return { ...tournament, entrants };
+  const output = { ...tournament, entrants };
+  client.release();
+  return output;
 };
 
 export const getEntrants = async (tournamentId: string) => {
@@ -15,7 +17,9 @@ export const getEntrants = async (tournamentId: string) => {
   JOIN competitors ON (entrants.competitor_id = competitors.id)
   WHERE tournament_id = '${tournamentId}';
    `;
-  return await client.query(entrantQuery).catch((e) => {
+  const entrants = await client.query(entrantQuery).catch((e) => {
     throw e;
   });
+  client.release();
+  return entrants;
 };

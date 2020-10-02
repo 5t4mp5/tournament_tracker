@@ -22,7 +22,7 @@ app.get('/', (req, res) =>
 
 app.get('/api/user/:id', async (req, res) => {
   const user = await getUser(req.params.id);
-  res.json(user.rows[0]);
+  res.json(user);
 });
 
 app.get('/api/tournament/:id', async (req, res) => {
