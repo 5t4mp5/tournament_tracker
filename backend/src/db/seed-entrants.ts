@@ -1,5 +1,6 @@
 import { competitors } from './competitors';
 import { dbPool } from './index';
+import { bosj27_avatar } from './assets';
 
 interface entrant {
   name: string;
@@ -35,7 +36,9 @@ const generateQuery = async (entrants: entrant[], tournamentName: string) => {
 dbPool
   .connect()
   .then(async (conn) => {
-    return conn.query(await generateQuery(entrants, 'G1 Climax 30'));
+    await conn.query(`INSERT INTO tournaments (title, format, avatar, status)
+    VALUES('Best of the Super Juniors 27', 'round-robin', '${bosj27_avatar}', 'open')`)
+    return conn.query(await generateQuery(entrants, 'Best of the Super Juniors 27'));
   })
   .then(() => {
     console.log('ENTRANTS SEEDED');

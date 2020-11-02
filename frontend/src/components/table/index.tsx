@@ -11,7 +11,7 @@ import { State } from '../../store';
 const _Table = (props: TableProps) => {
   const { tournament, fetchTournament } = props;
   React.useEffect(() => {
-    fetchTournament('3a6202c0-78c4-4f2f-8f29-bb68a311fa65');
+    fetchTournament('15415568-c1a3-45c6-a224-09f1c1169e42');
   });
 
   const data = tournament.entrants
