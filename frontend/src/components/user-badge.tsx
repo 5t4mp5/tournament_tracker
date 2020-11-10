@@ -15,7 +15,7 @@ interface PropsUserBadge {
 const _UserBadge = (props: PropsUserBadge) => {
   const { avatar, username, fetchUser } = props;
   useEffect(() => {
-    fetchUser('8027cbf7-d32b-432a-b94d-564bd5960659').catch((e) =>
+    fetchUser('7b5485f9-1f69-4f5a-871a-c56e6b43ab20').catch((e) =>
       console.error(e)
     );
   });

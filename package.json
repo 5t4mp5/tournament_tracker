@@ -39,6 +39,7 @@
   "scripts": {
     "start": "node server.js",
     "seed": "tsc ./backend/src/db/*.ts --outDir ./backend/dist/db && node ./backend/dist/db/seed.js && node ./backend/dist/db/seed-entrants.js",
+    "seed:matches": "tsc ./backend/src/db/seed-entrants.ts --outDir ./backend/dist/db && node ./backend/dist/db/seed-entrants.js",
     "webpack": "webpack",
     "webpack:dev": "npm run webpack -- --mode=development --watch",
     "start:server": "tsc && node ./backend/dist/server.js",

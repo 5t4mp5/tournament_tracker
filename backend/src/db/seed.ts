@@ -48,31 +48,22 @@ dbPool.connect().then((conn) => {
   CREATE TABLE IF NOT EXISTS matches (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     tournament_id uuid REFERENCES tournaments (id),
-    competitor1_id uuid REFERENCES competitors (id),
-    competitor2_id uuid REFERENCES competitors (id),
-    result VARCHAR (255)
+    entrant1_id uuid REFERENCES entrants (id),
+    entrant2_id uuid REFERENCES entrants (id),
+    result VARCHAR (255),
+    date date
   );
   INSERT INTO competitors (name) VALUES
-    ('Taichi'),
-    ('Will Ospreay'),
-    ('Jay White'),
-    ('Kota Ibushi'),
-    ('Minoru Suzuki'),
-    ('Kazuchika Okada'),
-    ('Jeff Cobb'),
-    ('Tomohiro Ishii'),
-    ('Shingo Takagi'),
-    ('Yujiro Takahashi'),
-    ('Juice Robinson'),
-    ('Toru Yano'),
-    ('Tetsuya Naito'),
-    ('Zack Sabre Jr.'),
-    ('KENTA'),
-    ('Hirooki Goto'),
-    ('SENADA'),
-    ('Hiroshi Tanahashi'),
-    ('YOSHI-HASHI'),
-    ('EVIL');
+    ('Yoshinobu Kanemaru'),
+    ('El Desperado'),
+    ('Ryusuke Taguchi'),
+    ('BUSHI'),
+    ('Hiromu Takahashi'),
+    ('Master Wato'),
+    ('Robbie Eagles'),
+    ('DOUKI'),
+    ('SHO'),
+    ('Taiji Ishimori');
   END;
   $do$;`
     )
